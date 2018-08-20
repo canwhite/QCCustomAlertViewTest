@@ -80,6 +80,7 @@ static inline UIColor *RGBA(int R, int G, int B, double A) {
     
     self.isClickBg = ^(BOOL isClick) {
         if (isClick) {
+            NSLog(@"我点击了背景");
             [view removeFromSuperview];
             [backview removeFromSuperview];
         }
@@ -128,6 +129,7 @@ static inline UIColor *RGBA(int R, int G, int B, double A) {
     //取消操作放到此处
     self.isClickCancel = ^(BOOL isClick) {
         if (isClick) {
+            NSLog(@"我点击了取消按钮");
             [view removeFromSuperview];
             [backview removeFromSuperview];
         }
@@ -144,12 +146,16 @@ static inline UIColor *RGBA(int R, int G, int B, double A) {
     [sureBtn setTitle:@"确定" forState:UIControlStateNormal ];
     sureBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     [sureBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [sureBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:sureBtn];
     //确认按钮的操作放在此处
     self.isClickSure = ^(BOOL isClick) {
         if (isClick) {
+            NSLog(@"我点击了确认按钮");
             [view removeFromSuperview];
             [backview removeFromSuperview];
+
+            
         }
     };
     
